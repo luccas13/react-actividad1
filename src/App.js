@@ -1,6 +1,3 @@
-//ESTILOS CSS
-import './assets/css/estilos.css'
-
 //IMPORT MY COMPONENT
 import { MyList } from './components/mylist/MyList'
 

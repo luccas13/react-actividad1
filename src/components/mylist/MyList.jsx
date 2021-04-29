@@ -1,8 +1,5 @@
 import React from 'react'
 
-//ESTILOS CSS
-// import '../../assets/css/estilos.css'
-
 export class MyList extends React.Component{
     constructor(props){
         super(props)
@@ -39,12 +36,13 @@ export class MyList extends React.Component{
     }
 
     Agregar(){
-        if ( this.state.puesto === '' || this.state.empresa === '' || this.state.ciudad === '' || this.state.pais === '' ){
+        const {miLista, puesto, empresa, ciudad, pais} = this.state
+        if ( puesto === '' || empresa === '' || ciudad === '' || pais === '' ){
             alert("Debes completar todos los campos.");
         }
         else{
             this.setState({
-                miLista: [...this.state.miLista, `Puesto: ${this.state.puesto} - Empresa: ${this.state.empresa} - Ciudad: ${this.state.ciudad} - Pais: ${this.state.pais}`],
+                miLista: [...miLista, `Puesto: ${puesto} - Empresa: ${empresa} - Ciudad: ${ciudad} - Pais: ${pais}`],
                 puesto: '',
                 empresa: '',
                 ciudad: '',
@@ -54,10 +52,9 @@ export class MyList extends React.Component{
     }
 
     Eliminar(){
-        var indice = document.getElementById("indice").value - 1
-        console.log(`indice: ${indice} - Tamaño de la lista: ${this.state.miLista.length}`)
+        let indice = document.getElementById("indice").value - 1
         if (-1 < indice && indice < this.state.miLista.length){
-            var listaNueva = this.state.miLista
+            let listaNueva = this.state.miLista
             listaNueva.splice(indice, 1)
             this.setState({
                 miLista: listaNueva
