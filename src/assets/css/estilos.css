@@ -1,75 +1,136 @@
+/*---------------- Estilos Generales ----------------*/
+
 *{
     padding: 0;
     margin: 0;
-    font-size: 18px;
+    font-family:'Times New Roman', Times, serif;
 }
 
 .cuerpo{
-    background: rgb(48,52,67);
-    background-size: 100%;
     color: #ccc;
+    background: rgb(43, 48, 65);
+    background-size: 100%;
+}
+
+/*---------------- Estilos Nivel 1 ----------------*/
+
+.navegador{
+    font-size: 25px;
+    background: rgb(40,45,55);
+    display: table;
+    width: 100%;
+    list-style: none;
 }
 
 .contenedor{
-    margin: auto;
-    padding: 2em;
-    width: 70em;
-    height: 40em;
-    position: relative;
+    font-size: 20px;
+    width: auto;
+    margin: 1em 25%;
+    padding: 1em;
 }
 
 .contenedor .formulario{
     background: rgb(40,45,55);
     box-shadow: 0 0 5px #ddd;
     padding: 1em;
-    width: 19em;
-    height: 16em;
-    display: inline-block;
-    position: absolute;
-    left: 0;
+    margin: 1em auto;
 }
 
-.contenedor .lista{
+.contenedor .tabla{
+    background: rgb(40,45,55);
     box-shadow: 0 0 5px #ddd;
-    width: 49em;
-    display: inline-block;
-    position: absolute;
-    right: 0;
+    margin: 1em auto;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
 }
 
-.formulario__boton{
-    padding: 0 1.6em;
+/*---------------- Estilos Nivel 2 ----------------*/
+
+.navegador__caja{
+    float: left;
+    line-height: 4rem;
+}
+
+.navegador__opcion{
+    color: #ccc;
+    display: block;
+    padding: 0 2.5em;
+    text-decoration: none;
+    transition: .6s;
+}
+
+.navegador__opcion:hover{
+    background: rgb(27, 31, 37);
+    color: rgb(47, 220, 226);
+}
+
+.formulario__boton-add{
+    width: 90%;
+    line-height: 1.5em;
+    text-align: center;
+    color: #333;
+    background: rgb(46, 251, 114);
+    box-shadow: 0 1px 2px 1px rgb(16, 149, 61);
     display: block;
     margin: .5em auto;
+    border-radius: 2.5px;
 }
 
-.formulario__label{
-    padding: 0 1em 0 0;
-    line-height: 2em;
-    width: 5em;
+.formulario__boton-add:hover{
+    background: rgb(16, 251, 94);
+    cursor: pointer;
+}
+
+.formulario__input-text{
+    font-size: 20px;
+    width: 90%;
+    line-height: 1.5em;
+    display: block;
+    margin: .5em auto;
+    border-radius: 2.5px;
+}
+
+.formulario__boton-del{
+    width: 40%;
+    line-height: 1.5em;
+    text-align: center;
+    color: #ccc;
+    background: rgb(251, 46, 56);
+    box-shadow: 0 1px 2px 1px rgb(158, 21, 28);
     display: inline-block;
+    margin: .5em 2em;
+    border-radius: 2.5px;
 }
 
-.formulario__separador{
-    margin: 1em 0;
+.formulario__boton-del:hover{
+    background: rgb(250, 19, 31);
+    cursor: pointer;
 }
 
-.formulario__label--del{
-    line-height: 2em;
-    padding: 0 2em 0 0;
-    width: 10em;
-    display: inline-block;
-}
-
-.formulario__input-indice{
-    width: 6em;
+.formulario__input-number{
+    font-size: 20px;
     text-align: right;
+    width: 40%;
+    line-height: 1.5em;
+    display: inline-block;
+    margin: .5em 2em;
+    border-radius: 2.5px;
 }
 
-.lista__elemento{
-    background: rgb(40,45,55);
-    padding: 0 2.5rem;
-    margin: .5em 0;
-    line-height: 2em;
-    box-shadow: 0 0 5px #ddd;
+.tabla__cabecera{
+    cursor: default;
+    color: #111;
+    background: rgb(21, 167, 106);
+    border-bottom: 3px solid rgb(22, 87, 60);
 }
+
+.tabla__celdas{
+    padding: .5em;
+}
+
+.tabla__cuerpo tr:hover{    
+    background: rgb(17, 17, 17);
+}
+
+/*---------------- Estilos Nivel 3 ----------------*/

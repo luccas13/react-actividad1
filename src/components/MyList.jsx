@@ -71,13 +71,13 @@ export class MyList extends React.Component{
             <div className="contenedor">
                 <div className="formulario">
                     <label className="formulario__label" >Puesto: </label>
-                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="puesto" value={this.state.puesto} className="formulario-input" /><br></br>
+                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="puesto" value={this.state.puesto} className="formulario-input" />
                     <label className="formulario__label" >Empresa: </label>
-                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="empresa" value={this.state.empresa} className="formulario-input" /><br></br>
+                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="empresa" value={this.state.empresa} className="formulario-input" />
                     <label className="formulario__label" >Ciudad: </label>
-                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="ciudad" value={this.state.ciudad} className="formulario-input" /><br></br>
+                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="ciudad" value={this.state.ciudad} className="formulario-input" />
                     <label className="formulario__label" >Pais: </label>
-                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="pais" value={this.state.pais} className="formulario-input" /><br></br>
+                    <input type="text" onChange={(cambio) => this.Entrada(cambio)} id="pais" value={this.state.pais} className="formulario-input" />
                     <button onClick={() => this.Agregar()} className="formulario__boton" >Agregar</button>
                     <hr className="formulario__separador" ></hr>
                     <label className="formulario__label--del" >Índice del elemento: </label>
