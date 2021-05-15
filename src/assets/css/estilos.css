@@ -12,6 +12,24 @@
     background-size: 100%;
 }
 
+.input{
+    font-size: 20px;
+    width: 40%;
+    line-height: 1.5em;
+    display: inline-block;
+    margin: .5em 2em;
+    border-radius: 2.5px;
+}
+
+.boton{
+    width: 40%;
+    line-height: 1.5em;
+    text-align: center;
+    display: inline-block;
+    margin: .5em 2em;
+    border-radius: 2.5px;
+}
+
 /*---------------- Estilos Nivel 1 ----------------*/
 
 .navegador{
@@ -65,42 +83,34 @@
     color: rgb(47, 220, 226);
 }
 
-.formulario__boton-add{
+.formulario__input-select{
     width: 90%;
-    line-height: 1.5em;
-    text-align: center;
+    height: 30px;
+}
+
+.formulario__input-number{
+    text-align: right;
+}
+
+.formulario__separador{
+    margin: 1em 0;
+}
+
+.formulario__boton-add{
     color: #333;
-    background: rgb(46, 251, 114);
-    box-shadow: 0 1px 2px 1px rgb(16, 149, 61);
-    display: block;
-    margin: .5em auto;
-    border-radius: 2.5px;
+    background: rgb(55, 255, 162);
+    box-shadow: 0 1px 2px 1px rgb(58, 187, 127);
 }
 
 .formulario__boton-add:hover{
-    background: rgb(16, 251, 94);
+    background: rgb(0, 255, 136);
     cursor: pointer;
 }
 
-.formulario__input-text{
-    font-size: 20px;
-    width: 90%;
-    line-height: 1.5em;
-    display: block;
-    margin: .5em auto;
-    border-radius: 2.5px;
-}
-
 .formulario__boton-del{
-    width: 40%;
-    line-height: 1.5em;
-    text-align: center;
     color: #ccc;
     background: rgb(251, 46, 56);
     box-shadow: 0 1px 2px 1px rgb(158, 21, 28);
-    display: inline-block;
-    margin: .5em 2em;
-    border-radius: 2.5px;
 }
 
 .formulario__boton-del:hover{
@@ -108,21 +118,10 @@
     cursor: pointer;
 }
 
-.formulario__input-number{
-    font-size: 20px;
-    text-align: right;
-    width: 40%;
-    line-height: 1.5em;
-    display: inline-block;
-    margin: .5em 2em;
-    border-radius: 2.5px;
-}
-
 .tabla__cabecera{
     cursor: default;
-    color: #111;
-    background: rgb(21, 167, 106);
-    border-bottom: 3px solid rgb(22, 87, 60);
+    background: rgb(83, 11, 216);
+    border-bottom: 3px solid rgb(56, 6, 148);
 }
 
 .tabla__celdas{

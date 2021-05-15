@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
 //Import my components
 import AddComponent from '../components/AddComponent';
+import DeleteComponent from '../components/DeleteComponent'
 import Lista from '../components/Lista';
-//Import utils
-import { validarCadena } from '../utils/validarCadena';
-import { validarNumero } from '../utils/validarNumero';
 
 class Empresa extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaCiudades: [],
             indiceCiudad: -1,
-            listaEmpresas: [],
             inputEmpresa: '',
+            inputIndex: -1,
         }
-    }
-
-    componentDidMount() {
-        let Ciudades = localStorage.getItem('listaCiudades');
-        let Empresas = localStorage.getItem('listaEmpresas');
-        this.setState({
-            listaCiudades: Ciudades ? JSON.parse(Ciudades) : [],
-            listaEmpresas: Empresas ? JSON.parse(Empresas) : [],
-        });
     }
 
     handleInput = (event) => {
@@ -32,43 +20,34 @@ class Empresa extends Component {
         });
     }
 
-    addItem = () => {
-        const {listaCiudades, indiceCiudad, listaEmpresas, inputEmpresa,} = this.state
-        if (validarCadena(inputEmpresa) && validarNumero(indiceCiudad)) {
-            this.setState({
-                listaEmpresas: [...listaEmpresas, {
-                    Empresa: inputEmpresa,
-                    Ciudad: listaCiudades[indiceCiudad].Ciudad,
-                    'País': listaCiudades[indiceCiudad]['País'],
-                }],
-                inputEmpresa: '',
-            });
-            localStorage.setItem('listaEmpresas', JSON.stringify([...listaEmpresas, {
-                Empresa: inputEmpresa,
-                Ciudad: listaCiudades[indiceCiudad].Ciudad,
-                'País': listaCiudades[indiceCiudad]['País'],
-            }]));
-        } else {
-            alert('Debe Rellenar Todos Los Campos!!!');
-        }
-    }
-
     render() { 
         return (
             <div className='contenedor'>
-                <AddComponent 
-                nameInput='inputEmpresa'
-                addItem={this.addItem}
-                handleInput={this.handleInput}
-                input={this.state.inputEmpresa}
-                msg='Empresa'
-                nameSelect='indiceCiudad'
-                selector={true}
-                msgSelect='Ciudad'
-                lista={this.state.listaCiudades}
-                />
+                <div className='formulario' >
+                    <AddComponent 
+                    addItem={this.props.addItem}
+                    handleInput={this.handleInput}
+                    elemento={this.state.inputEmpresa}
+                    nameInput='inputEmpresa'
+                    indice={this.state.indiceCiudad}
+                    msg='Empresa'
+                    selector={true}
+                    nameSelect='indiceCiudad'
+                    msgSelect='Ciudad'
+                    lista={this.props.ciudades}
+                    />
+                    <hr className="formulario__separador" ></hr>
+                    <DeleteComponent 
+                    handleInput={this.handleInput}
+                    deleteItem={this.props.deleteItem}
+                    nameInput='inputIndex'
+                    lista={this.props.empresas}
+                    indice={this.state.inputIndex}
+                    idLista='listaEmpresas'
+                    />
+                </div>
                 <Lista 
-                lista={this.state.listaEmpresas}
+                lista={this.props.empresas}
                 msg='Empresa'
                 />
             </div>

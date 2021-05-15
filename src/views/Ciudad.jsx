@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
 //Import my components
 import AddComponent from '../components/AddComponent';
+import DeleteComponent from '../components/DeleteComponent'
 import Lista from '../components/Lista';
-//Import utils
-import { validarCadena } from '../utils/validarCadena';
-import { validarNumero } from '../utils/validarNumero';
 
 class Ciudad extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaPaises: [],
-            indicePais: -1,
-            listaCiudades: [],
+            indicePais: -1,            
             inputCiudad: '',
+            inputIndex: -1,
         }
-    }
-
-    componentDidMount() {
-        let Paises = localStorage.getItem('listaPaises');
-        let Ciudades = localStorage.getItem('listaCiudades');
-        this.setState({
-            listaPaises: Paises ? JSON.parse(Paises) : [],
-            listaCiudades: Ciudades ? JSON.parse(Ciudades) : [],
-        });
     }
 
     handleInput = (event) => {
@@ -32,42 +20,34 @@ class Ciudad extends Component {
         });
     }
 
-    addItem = () => {
-        const {listaPaises, indicePais, listaCiudades, inputCiudad } = this.state
-        console.log(validarNumero(indicePais));
-        if (validarCadena(inputCiudad) && validarNumero(indicePais)) {
-            this.setState({
-                inputCiudad: '',
-                listaCiudades: [...listaCiudades, {
-                    Ciudad: inputCiudad, 
-                    'País': listaPaises[indicePais]['País'],
-                }] 
-            });
-            localStorage.setItem('listaCiudades', JSON.stringify([...listaCiudades, {
-                Ciudad: inputCiudad,
-                'País': listaPaises[indicePais]['País'],
-            }]));
-        } else {
-            alert('Debe Rellenar Todos Los Campos!!!');
-        }
-    }
-
     render() { 
         return (
             <div className='contenedor'>
-                <AddComponent 
-                nameInput='inputCiudad'
-                addItem={this.addItem}
-                handleInput={this.handleInput}
-                input={this.state.inputCiudad}
-                msg='Ciudad'
-                nameSelect='indicePais'
-                selector={true}
-                msgSelect='País'
-                lista={this.state.listaPaises}
-                />
+                <div className='formulario' >
+                    <AddComponent 
+                    addItem={this.props.addItem}
+                    handleInput={this.handleInput}
+                    elemento={this.state.inputCiudad}
+                    nameInput='inputCiudad'
+                    indice={this.state.indicePais}
+                    msg='Ciudad'
+                    selector={true}
+                    nameSelect='indicePais'
+                    lista={this.props.paises}
+                    msgSelect='País'
+                    />
+                    <hr className="formulario__separador" ></hr>
+                    <DeleteComponent 
+                    handleInput={this.handleInput}
+                    deleteItem={this.props.deleteItem}
+                    nameInput='inputIndex'
+                    lista={this.props.ciudades}
+                    indice={this.state.inputIndex}
+                    idLista='lsitaciudades'
+                    />
+                </div>
                 <Lista 
-                lista={this.state.listaCiudades}
+                lista={this.props.ciudades}
                 msg='Ciudad'
                 />
             </div>

@@ -3,28 +3,28 @@ import Selector from '../components/Selector';
 
 const AddComponent = (props) => {
     return (
-    <div className='formulario'>
+    <>
+        {props.selector ? <Selector 
+            msgSelect={props.msgSelect} 
+            lista={props.lista } 
+            nameSelect={props.nameSelect}
+            handleInput={props.handleInput}
+            /> : <></>}
         <input 
         type="text" 
         onChange={(event) => props.handleInput(event)} 
         name={props.nameInput} 
-        value={props.input} 
+        value={props.elemento} 
         placeholder={'Ingrese ' + props.msg}
         //Estilos
-        className='formulario__input-text'
+        className='input '
         />
-        {props.selector ? <Selector 
-        msgSelect={props.msgSelect} 
-        lista={props.lista } 
-        nameSelect={props.nameSelect}
-        handleInput={props.handleInput}
-        /> : <></>}
         <span 
-        onClick={() => props.addItem()}
+        onClick={() => props.addItem(props.elemento, props.indice)}
         //Estilos 
-        className='formulario__boton-add' 
+        className='boton formulario__boton-add' 
         >Agregar</span>
-    </div>
+    </>
     );
 }
  

@@ -1,18 +1,20 @@
 const DeleteComponent = (props) => {
+    const {lista, indice, idLista} = props;
     return (
-        <div className='formulario'>
+        <>
             <input 
             type="number" 
+            name={props.nameInput}
             onChange={(event) => props.handleInput(event)} 
             //Estilos
-            className='formulario__input-number'
+            className='input formulario__input-number'
             />
             <span 
-            onClick={() => props.deleteItem()}
+            onClick={() => props.deleteItem(lista, indice, idLista)}
             //Estilos 
-            className='formulario__boton-del' 
+            className='boton formulario__boton-del' 
             >Eliminar</span>
-        </div>
+        </>
     );
 }
  

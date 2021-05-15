@@ -1,58 +1,48 @@
 import React, { Component } from 'react';
 //Import my components
 import AddComponent from '../components/AddComponent';
+import DeleteComponent from '../components/DeleteComponent'
 import Lista from '../components/Lista';
-//Import utils
-import { validarCadena } from '../utils/validarCadena';
 
 class Pais extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaPaises: [],
             inputPais: '',
+            inputIndex: -1,
         }
-    }
-
-    componentDidMount() {
-        let Paises = localStorage.getItem('listaPaises');
-        this.setState({
-            listaPaises: Paises ? JSON.parse(Paises) : [],
-        });
     }
 
     handleInput = (event) => {
         this.setState({
-            inputPais: event.target.value,
+            [event.target.name]: event.target.value,
         });
-    }
-
-    addItem = () => {
-        const {listaPaises, inputPais,} = this.state
-        if (validarCadena(inputPais)) {
-            this.setState({
-                listaPaises: [...listaPaises, {'País': inputPais,}],
-                inputPais: '',
-            });
-            localStorage.setItem('listaPaises', JSON.stringify([...listaPaises, {'País': inputPais,}]));
-        } else {
-            alert('Debe Rellenar Todos Los Campos!!!');
-        }
     }
 
     render() { 
         return (
             <div className='contenedor'>
-                <AddComponent 
-                nameInput='inputPais'
-                addItem={this.addItem}
-                handleInput={this.handleInput}
-                input={this.state.inputPais}
-                msg='País'
-                selector={false}
-                />
+                <div className='formulario'>
+                    <AddComponent 
+                    addItem={this.props.addItem}
+                    handleInput={this.handleInput}
+                    elemento={this.state.inputPais}
+                    nameInput='inputPais'
+                    msg='País'
+                    selector={false}
+                    />
+                    <hr className="formulario__separador" ></hr>
+                    <DeleteComponent 
+                    handleInput={this.handleInput}
+                    deleteItem={this.props.deleteItem}
+                    nameInput='inputIndex'
+                    lista={this.props.paises}
+                    indice={this.state.inputIndex}
+                    idLista='listaPaises'
+                    />
+                </div>
                 <Lista 
-                lista={this.state.listaPaises}
+                lista={this.props.paises}
                 msg='País'
                 />
             </div>

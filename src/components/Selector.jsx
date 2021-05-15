@@ -4,11 +4,11 @@ const Selector = (props) => {
         <select 
         onChange={(event) => props.handleInput(event)}
         name={props.nameSelect}
-        className='formulario__input-text'
+        className='input formulario__input-select'
         //Estilos
         >
             <option value={-1} >{'Seleccione ' + props.msgSelect}</option>
-            {aux === 0 ? null : props.lista.map((item,index) => {return(
+            {aux === 0 ? null : props.lista.map((item, index) => {return(
                 <option key={index} value={index}>{item[props.msgSelect]}</option>
             )}) }
         </select>

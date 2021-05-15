@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
 //Import my components
 import AddComponent from '../components/AddComponent';
+import DeleteComponent from '../components/DeleteComponent'
 import Lista from '../components/Lista';
-//Import utils
-import { validarCadena } from '../utils/validarCadena';
-import { validarNumero } from '../utils/validarNumero';
 
 class Puesto extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaEmpresas: [],
             indiceEmpresa: -1,
-            listaPuestos: [],
             inputPuesto: '',
+            inputIndex: -1,
         }
-    }
-
-    componentDidMount() {
-        let Empresas = localStorage.getItem('listaEmpresas');
-        let Puestos = localStorage.getItem('listaPuestos');
-        this.setState({
-            listaEmpresas: Empresas ? JSON.parse(Empresas) : [],
-            listaPuestos: Puestos ? JSON.parse(Puestos) : [],
-        });
     }
 
     handleInput = (event) => {
@@ -32,45 +20,34 @@ class Puesto extends Component {
         });
     }
 
-    addItem = () => {
-        const {listaEmpresas, indiceEmpresa, listaPuestos, inputPuesto,} = this.state
-        if (validarCadena(inputPuesto) && validarNumero(indiceEmpresa)) {
-            this.setState({
-                listaPuestos: [...listaPuestos, {
-                    Puesto: inputPuesto,
-                    Empresa: listaEmpresas[indiceEmpresa].Empresa,
-                    Ciudad: listaEmpresas[indiceEmpresa].Ciudad,
-                    'País': listaEmpresas[indiceEmpresa]['País'], 
-                }],
-                inputPuesto: '',
-            });
-            localStorage.setItem('listaPuestos', JSON.stringify([...listaPuestos, {
-                Puesto: inputPuesto,
-                Empresa: listaEmpresas[indiceEmpresa].Empresa,
-                Ciudad: listaEmpresas[indiceEmpresa].Ciudad,
-                'País': listaEmpresas[indiceEmpresa]['País'],
-            }]));
-        } else {
-            alert('Debe Rellenar Todos Los Campos!!!');
-        }
-    }
-
     render() { 
         return (
             <div className='contenedor'>
-                <AddComponent 
-                nameInput='inputPuesto'
-                addItem={this.addItem}
-                handleInput={this.handleInput}
-                input={this.state.inputPuesto}
-                msg='Puesto'
-                nameSelect='indiceEmpresa'
-                selector={true}
-                msgSelect='Empresa'
-                lista={this.state.listaEmpresas}
-                />
+                <div className='formulario' >
+                    <AddComponent 
+                    addItem={this.props.addItem}
+                    handleInput={this.handleInput}
+                    indice={this.state.indiceEmpresa}
+                    elemento={this.state.inputPuesto}
+                    nameInput='inputPuesto'
+                    msg='Puesto'
+                    selector={true}
+                    nameSelect='indiceEmpresa'
+                    msgSelect='Empresa'
+                    lista={this.props.empresas}
+                    />
+                    <hr className="formulario__separador" ></hr>
+                    <DeleteComponent 
+                    handleInput={this.handleInput}
+                    deleteItem={this.props.deleteItem}
+                    nameInput='inputIndex'
+                    lista={this.props.puestos}
+                    indice={this.state.inputIndex}
+                    idLista='listaPuestos'
+                    />
+                </div>
                 <Lista 
-                lista={this.state.listaPuestos}
+                lista={this.props.puestos}
                 msg='Puesto'
                 />
             </div>
