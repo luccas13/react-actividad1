@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import AddComponent from '../components/AddComponent';
 import DeleteComponent from '../components/DeleteComponent'
 import Lista from '../components/Lista';
+//Import utils
+import { cambiarClases } from '../utils/cambiarClases';
 
 class Ciudad extends Component {
     constructor(props) {
@@ -21,6 +23,7 @@ class Ciudad extends Component {
     }
 
     render() { 
+        cambiarClases('Ciudades');
         return (
             <div className='contenedor'>
                 <div className='formulario' >

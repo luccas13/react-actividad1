@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import AddComponent from '../components/AddComponent';
 import DeleteComponent from '../components/DeleteComponent'
 import Lista from '../components/Lista';
+//Import utils
+import { cambiarClases } from '../utils/cambiarClases';
 
 class Pais extends Component {
     constructor(props) {
@@ -20,6 +22,7 @@ class Pais extends Component {
     }
 
     render() { 
+        cambiarClases('Paises');
         return (
             <div className='contenedor'>
                 <div className='formulario'>

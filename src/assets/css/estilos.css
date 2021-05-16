@@ -67,20 +67,25 @@
 
 .navegador__caja{
     float: left;
-    line-height: 4rem;
+    line-height: 2em;
 }
 
 .navegador__opcion{
     color: #ccc;
     display: block;
-    padding: 0 2.5em;
+    padding: 0 2em;
     text-decoration: none;
-    transition: .6s;
+    margin: .4em;
 }
 
 .navegador__opcion:hover{
-    background: rgb(27, 31, 37);
+    transition: 0.7s;
     color: rgb(47, 220, 226);
+}
+
+.select{
+    color: rgb(47, 220, 226);
+    border-bottom: 2px solid rgb(47, 220, 226);
 }
 
 .formulario__input-select{
