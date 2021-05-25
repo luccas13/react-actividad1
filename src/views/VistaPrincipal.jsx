@@ -8,7 +8,7 @@ const VistaPrincipal = (props) => {
     return (
         <div className='contenedor' >
             <Tabla 
-            listas={props.listas}
+            lista={props.lista}
             msg={['Puesto','Empresa','Ciudad','País']}
             />
         </div>

@@ -1,6 +1,5 @@
 const Tabla = (props) => {
-    const { listaPaises, listaCiudades, listaEmpresas, listaPuestos } = props.listas;
-    // console.log(listaEmpresas[0].Empresa);
+    const { lista } = props;
     return (
         <table className='tabla' >
             <thead className='tabla__cabecera' >
@@ -12,13 +11,13 @@ const Tabla = (props) => {
                 </tr>
             </thead>
             <tbody className='tabla__cuerpo' >
-                {listaPuestos.map((elemento, indice) => {return(
+                {lista.map(({Puesto, Empresa}, indice) => {return(
                     <tr key={indice}>
                         <td className='tabla__celdas' >{indice}</td>
-                        <td className='tabla__celdas' >{elemento.Puesto}</td>
-                        <td className='tabla__celdas' >{listaEmpresas[elemento.Empresa].Empresa}</td>
-                        <td className='tabla__celdas' >{listaCiudades[listaEmpresas[elemento.Empresa].Ciudad].Ciudad}</td>
-                        <td className='tabla__celdas' >{listaPaises[listaCiudades[listaEmpresas[elemento.Empresa].Ciudad]['País']]['País']}</td>
+                        <td className='tabla__celdas' >{Puesto}</td>
+                        <td className='tabla__celdas' >{Empresa.Empresa}</td>
+                        <td className='tabla__celdas' >{Empresa.Ciudad.Ciudad}</td>
+                        <td className='tabla__celdas' >{Empresa.Ciudad['País']['País']}</td>
                     </tr>
                 )})}
             </tbody>
