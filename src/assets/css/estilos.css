@@ -1,75 +1,140 @@
+/*---------------- Estilos Generales ----------------*/
+
 *{
     padding: 0;
     margin: 0;
-    font-size: 18px;
+    font-family:'Times New Roman', Times, serif;
 }
 
 .cuerpo{
-    background: rgb(48,52,67);
-    background-size: 100%;
     color: #ccc;
+    background: rgb(43, 48, 65);
+    background-size: 100%;
+}
+
+.input{
+    font-size: 20px;
+    width: 40%;
+    line-height: 1.5em;
+    display: inline-block;
+    margin: .5em 2em;
+    border-radius: 2.5px;
+}
+
+.boton{
+    width: 40%;
+    line-height: 1.5em;
+    text-align: center;
+    display: inline-block;
+    margin: .5em 2em;
+    border-radius: 2.5px;
+}
+
+/*---------------- Estilos Nivel 1 ----------------*/
+
+.navegador{
+    font-size: 25px;
+    background: rgb(40,45,55);
+    display: table;
+    width: 100%;
+    list-style: none;
 }
 
 .contenedor{
-    margin: auto;
-    padding: 2em;
-    width: 70em;
-    height: 40em;
-    position: relative;
+    font-size: 20px;
+    width: auto;
+    margin: 1em 25%;
+    padding: 1em;
 }
 
 .contenedor .formulario{
     background: rgb(40,45,55);
     box-shadow: 0 0 5px #ddd;
     padding: 1em;
-    width: 19em;
-    height: 16em;
-    display: inline-block;
-    position: absolute;
-    left: 0;
+    margin: 1em auto;
 }
 
-.contenedor .lista{
+.contenedor .tabla{
+    background: rgb(40,45,55);
     box-shadow: 0 0 5px #ddd;
-    width: 49em;
-    display: inline-block;
-    position: absolute;
-    right: 0;
+    margin: 1em auto;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
 }
 
-.formulario__boton{
-    padding: 0 1.6em;
-    display: block;
-    margin: .5em auto;
-}
+/*---------------- Estilos Nivel 2 ----------------*/
 
-.formulario__label{
-    padding: 0 1em 0 0;
+.navegador__caja{
+    float: left;
     line-height: 2em;
-    width: 5em;
-    display: inline-block;
+}
+
+.navegador__opcion{
+    color: #ccc;
+    display: block;
+    padding: 0 2em;
+    text-decoration: none;
+    margin: .4em;
+}
+
+.navegador__opcion:hover{
+    transition: 0.7s;
+    color: rgb(47, 220, 226);
+}
+
+.select{
+    color: rgb(47, 220, 226);
+    border-bottom: 2px solid rgb(47, 220, 226);
+}
+
+.formulario__input-select{
+    width: 90%;
+    height: 30px;
+}
+
+.formulario__input-number{
+    text-align: right;
 }
 
 .formulario__separador{
     margin: 1em 0;
 }
 
-.formulario__label--del{
-    line-height: 2em;
-    padding: 0 2em 0 0;
-    width: 10em;
-    display: inline-block;
+.formulario__boton-add{
+    color: #333;
+    background: rgb(55, 255, 162);
+    box-shadow: 0 1px 2px 1px rgb(58, 187, 127);
 }
 
-.formulario__input-indice{
-    width: 6em;
-    text-align: right;
+.formulario__boton-add:hover{
+    background: rgb(0, 255, 136);
+    cursor: pointer;
 }
 
-.lista__elemento{
-    background: rgb(40,45,55);
-    padding: 0 2.5rem;
-    margin: .5em 0;
-    line-height: 2em;
-    box-shadow: 0 0 5px #ddd;
+.formulario__boton-del{
+    color: #ccc;
+    background: rgb(251, 46, 56);
+    box-shadow: 0 1px 2px 1px rgb(158, 21, 28);
 }
+
+.formulario__boton-del:hover{
+    background: rgb(250, 19, 31);
+    cursor: pointer;
+}
+
+.tabla__cabecera{
+    cursor: default;
+    background: rgb(83, 11, 216);
+    border-bottom: 3px solid rgb(56, 6, 148);
+}
+
+.tabla__celdas{
+    padding: .5em;
+}
+
+.tabla__cuerpo tr:hover{    
+    background: rgb(17, 17, 17);
+}
+
+/*---------------- Estilos Nivel 3 ----------------*/
