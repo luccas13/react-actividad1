@@ -44,14 +44,15 @@ class Puesto extends Component {
                     handleInput={this.handleInput}
                     deleteItem={this.props.deleteItem}
                     nameInput='inputIndex'
-                    lista={this.props.puestos}
+                    url='jobs'
                     indice={this.state.inputIndex}
                     idLista='listaPuestos'
                     />
                 </div>
                 <Lista 
                 lista={this.props.puestos}
-                msg='Puesto'
+                msg1='Puesto'
+                msg2='position'
                 />
             </div>
         );

@@ -44,14 +44,15 @@ class Empresa extends Component {
                     handleInput={this.handleInput}
                     deleteItem={this.props.deleteItem}
                     nameInput='inputIndex'
-                    lista={this.props.empresas}
+                    url='organizations'
                     indice={this.state.inputIndex}
                     idLista='listaEmpresas'
                     />
                 </div>
                 <Lista 
                 lista={this.props.empresas}
-                msg='Empresa'
+                msg1='Empresa'
+                msg2='name'
                 />
             </div>
         );

@@ -8,8 +8,8 @@ const Selector = (props) => {
         //Estilos
         >
             <option value={-1} >{'Seleccione ' + props.msgSelect}</option>
-            {aux === 0 ? null : props.lista.map((item, index) => {return(
-                <option key={index} value={index}>{item[props.msgSelect]}</option>
+            {aux === 0 ? null : props.lista.map(({name, id}, index) => {return(
+                <option key={index} value={id}>{name}</option>
             )}) }
         </select>
     );

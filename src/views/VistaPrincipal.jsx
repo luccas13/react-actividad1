@@ -1,18 +1,36 @@
+import React, { Component } from 'react';
 //Import my components
 import Tabla from '../components/Tabla';
 //Import utils
+import { getData, postData, deleteData } from '../clients/pilarClient';
 import { cambiarClases } from '../utils/cambiarClases';
 
-const VistaPrincipal = (props) => {
-    cambiarClases('Home');
-    return (
-        <div className='contenedor' >
-            <Tabla 
-            lista={props.lista}
-            msg={['Puesto','Empresa','Ciudad','País']}
-            />
-        </div>
-    );
+class VistaPrincipal extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            dbPilar: [],
+        }
+    }
+
+    componentDidMount() {
+        getData().then(res => this.setState({
+            dbPilar: res,
+          }));
+    }
+
+
+    render(){
+        cambiarClases('Home');
+        return (
+            <div className='contenedor' >
+                <Tabla 
+                lista={this.state.dbPilar}
+                msg={['Puesto','Empresa','Ciudad','País']}
+                />
+            </div>
+        );
+    }
 }
  
 export default VistaPrincipal;

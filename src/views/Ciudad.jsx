@@ -44,14 +44,15 @@ class Ciudad extends Component {
                     handleInput={this.handleInput}
                     deleteItem={this.props.deleteItem}
                     nameInput='inputIndex'
-                    lista={this.props.ciudades}
+                    url='places'
                     indice={this.state.inputIndex}
                     idLista='lsitaciudades'
                     />
                 </div>
                 <Lista 
                 lista={this.props.ciudades}
-                msg='Ciudad'
+                msg1='Ciudad'
+                msg2='name'
                 />
             </div>
         );

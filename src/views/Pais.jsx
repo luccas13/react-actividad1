@@ -39,14 +39,15 @@ class Pais extends Component {
                     handleInput={this.handleInput}
                     deleteItem={this.props.deleteItem}
                     nameInput='inputIndex'
-                    lista={this.props.paises}
+                    url='countries'
                     indice={this.state.inputIndex}
                     idLista='listaPaises'
                     />
                 </div>
                 <Lista 
                 lista={this.props.paises}
-                msg='País'
+                msg1='País'
+                msg2='name'
                 />
             </div>
         );

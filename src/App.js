@@ -9,6 +9,7 @@ import Ciudad from './views/Ciudad';
 import Pais from './views/Pais';
 import NotFoundView from './views/NotFoundView';
 //Import utils
+import { getData, postData, deleteData } from './clients/pilarClient';
 import { validarCadena } from './utils/validarCadena';
 import { validarNumero } from './utils/validarNumero';
 
@@ -16,134 +17,90 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      // dbPilar: [],
       listaPaises: [],
       listaCiudades: [],
       listaEmpresas: [],
       listaPuestos: [],
-      listaIds: {
-        idPais: 0,
-        idCiudad: 0,
-        idEmpresa: 0,
-        idPuesto: 0,
-      }
     }
   }
 
   componentDidMount() {
-    let Paises = localStorage.getItem('listaPaises');
-    let Ciudades = localStorage.getItem('listaCiudades');
-    let Empresas = localStorage.getItem('listaEmpresas');
-    let Puestos = localStorage.getItem('listaPuestos');
-    let Ids = localStorage.getItem('listaIds');
-    this.setState({
-        listaPaises: Paises ? JSON.parse(Paises) : [],
-        listaCiudades: Ciudades ? JSON.parse(Ciudades) : [],
-        listaEmpresas: Empresas ? JSON.parse(Empresas) : [],
-        listaPuestos: Puestos ? JSON.parse(Puestos) : [],
-        listaIds: Ids ? JSON.parse(Ids) : {
-          idPais: 0,
-          idCiudad: 0,
-          idEmpresa: 0,
-          idPuesto: 0,
-        },
-    });
+    getData().then(res => this.setState({
+      // dbPilar: res,
+      listaPaises: res.countries,
+      listaCiudades: res.places,
+      listaEmpresas: res.organizations,
+      listaPuestos: res.jobs,
+    }));
   }
 
-  addPais = (entrada) => {
-    const {listaPaises, listaIds } = this.state
-    if (validarCadena(entrada)) {
-        this.setState({
-            listaPaises: [...listaPaises, {'País': entrada, id: listaIds.idPais}],
+  addPais = (elemento) => {
+    if (validarCadena(elemento)) {
+        let data = {name: elemento,};
+        postData('countries', data, 'País', 'name').then(res => {
+          this.setState({
+            listaPaises: [...this.state.listaPaises, res.data],
+          });
+          alert('País agregado exitosamente!!!');
         });
-        localStorage.setItem('listaPaises', JSON.stringify([...listaPaises, {'País': entrada, id: listaIds.idPais++}]));
-        localStorage.setItem('listaIds', JSON.stringify(listaIds));
-        alert('País agregado exitosamente!!!');
-    } else {
-        alert('Faltan campos por completar!!!');
+      } else {
     }
   }
 
   addCiudad = (elemento, indice) => {
-    const {listaCiudades, listaPaises, listaIds} = this.state
     if (validarCadena(elemento) && validarNumero(indice)) {
+      let data = {name: elemento, countrieId: indice,};
+      postData('places', data, 'Ciudad', 'name').then(res => {
         this.setState({
-            listaCiudades: [...listaCiudades, {
-                Ciudad: elemento, 
-                id: listaIds.idCiudad,
-                'País': listaPaises[indice], 
-            }],
+          listaCiudades: [...this.state.listaCiudades, res.data],
         });
-        localStorage.setItem('listaCiudades', JSON.stringify([...listaCiudades, {
-            Ciudad: elemento,
-            id: listaIds.idCiudad++,
-            'País': listaPaises[indice],
-
-        }]));
-        localStorage.setItem('listaIds', JSON.stringify(listaIds));
         alert('Ciudad agregada exitosamente!!!');
+      });
     } else {
         alert('Faltan campos por completar!!!');
     }
   }
 
   addEmpresa = (elemento, indice) => {
-    const {listaEmpresas, listaCiudades, listaIds} = this.state
     if (validarCadena(elemento) && validarNumero(indice)) {
+      let data = {name: elemento, placeId: indice,};
+      postData('organizations', data).then(res => {
         this.setState({
-            listaEmpresas: [...listaEmpresas, {
-                Empresa: elemento,
-                id: listaIds.idEmpresa,
-                Ciudad: listaCiudades[indice],
-            }],
+          listaEmpresas: [...this.state.listaEmpresas, res.data],
         });
-        localStorage.setItem('listaEmpresas', JSON.stringify([...listaEmpresas, {
-          Empresa: elemento,
-          id: listaIds.idEmpresa++,
-          Ciudad: listaCiudades[indice],
-        }]));
-        localStorage.setItem('listaIds', JSON.stringify(listaIds));
         alert('Empresa agregada exitosamente!!!');
+      });
     } else {
         alert('Faltan campos por completar!!!');
     }
   }
 
   addPuesto = (elemento, indice) => {
-    const {listaPuestos, listaEmpresas, listaIds} = this.state
     if (validarCadena(elemento) && validarNumero(indice)) {
+      let data = {position: elemento, description: 'Lorem ipsum', organizationId: indice,};
+      postData('jobs', data).then(res => {
         this.setState({
-            listaPuestos: [...listaPuestos, {
-                Puesto: elemento,
-                id: listaIds.idPuesto,
-                Empresa: listaEmpresas[indice],
-            }],
+          listaPuestos: [...this.state.listaPuestos, res.data],
         });
-        localStorage.setItem('listaPuestos', JSON.stringify([...listaPuestos, {
-          Puesto: elemento,
-          id: listaIds.idPuesto++,
-          Empresa: listaEmpresas[indice],
-        }]));
-        localStorage.setItem('listaIds', JSON.stringify(listaIds));
         alert('Puesto agregado exitosamente!!!');
+      });
     } else {
         alert('Faltan campos por completar!!!');
     }
   }
 
-  deleteItem = (lista, indice, idLista) => {
-    let aux = lista.length;
-    if (-1 < indice && indice < aux){
-        let listaNueva = lista
-        listaNueva.splice(indice, 1)
-        this.setState({
-            [idLista]: listaNueva,
-        })
-        localStorage.setItem(idLista, JSON.stringify(listaNueva));
-
-    }
-    else{
-        alert("El elemento no existe!!")
-    }
+  deleteItem = (url, indice, idLista) => {
+    deleteData(url, indice).then(res => {
+      res.status === 200 ? alert('Elemento eliminado con éxito!!!') : alert(`Ocurrió un error al querer eliminar el elemento!!!`);
+      getData().then(res => this.setState({
+        // dbPilar: res,
+        listaPaises: res.countries,
+        listaCiudades: res.places,
+        listaEmpresas: res.organizations,
+        listaPuestos: res.jobs,
+      }));
+    });
 }
 
   render(){
@@ -151,7 +108,7 @@ class App extends Component {
       <div className="App">
         <NavBar/>
         <Switch>
-          <Route path="/" exact render={() => <VistaPrincipal lista={this.state.listaPuestos} />} />
+          <Route path="/" exact render={() => <VistaPrincipal lista={this.state.dbPilar} />} />
           <Route path="/Puestos" exact render={() => <Puesto addItem={this.addPuesto} deleteItem={this.deleteItem} empresas={this.state.listaEmpresas} puestos={this.state.listaPuestos} />} />
           <Route path="/Empresas" exact render={() => <Empresa addItem={this.addEmpresa} deleteItem={this.deleteItem} ciudades={this.state.listaCiudades} empresas={this.state.listaEmpresas} />} />
           <Route path="/Ciudades" exact render={() => <Ciudad addItem={this.addCiudad} deleteItem={this.deleteItem} paises={this.state.listaPaises} ciudades={this.state.listaCiudades} />} />
