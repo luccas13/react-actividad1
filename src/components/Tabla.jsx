@@ -13,14 +13,19 @@ const Tabla = (props) => {
                 </tr>
             </thead>
             <tbody className='tabla__cuerpo' >
-                {jobs ? jobs.map(({position, id, organizationId}, indice) => {
-                    let organization = buscadorId(organizationId, organizations);
-                    let place = buscadorId(organization.placeId, places);
-                    let country = buscadorId(place.countrieId, countries)
+                {jobs ? jobs.map(({position, id, description, organizationId}, indice) => {
+                    // console.log(organizations.length);
+                    let organization =  organizations.length > 0 ? buscadorId(organizationId, organizations) : {name: ' - '};
+                    // console.log('Organization: ', organization);
+                    let place = organization.placeId ? buscadorId(organization.placeId, places) : {name: ' - '};
+                    // console.log('Place: ', place);
+                    let country = place.countrieId ? buscadorId(place.countrieId, countries) : {name: ' - '};
+                    // console.log('Country :', country);
                     return(
                     <tr key={indice}>
                         <td className='tabla__celdas' >{id}</td>
                         <td className='tabla__celdas' >{position}</td>
+                        <td className='tabla__celdas' >{description}</td>
                         <td className='tabla__celdas' >{organization.name}</td>
                         <td className='tabla__celdas' >{place.name}</td>
                         <td className='tabla__celdas' >{country.name}</td>

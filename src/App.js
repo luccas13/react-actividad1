@@ -17,7 +17,6 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // dbPilar: [],
       listaPaises: [],
       listaCiudades: [],
       listaEmpresas: [],
@@ -76,9 +75,9 @@ class App extends Component {
     }
   }
 
-  addPuesto = (elemento, indice) => {
-    if (validarCadena(elemento) && validarNumero(indice)) {
-      let data = {position: elemento, description: 'Lorem ipsum', organizationId: indice,};
+  addPuesto = (elemento, indice, description) => {
+    if (validarCadena(elemento) && validarNumero(indice) && validarCadena(description)) {
+      let data = {position: elemento, description: description, organizationId: indice,};
       postData('jobs', data).then(res => {
         this.setState({
           listaPuestos: [...this.state.listaPuestos, res.data],
@@ -90,27 +89,26 @@ class App extends Component {
     }
   }
 
-  deleteItem = (url, indice, idLista) => {
+  deleteItem = (url, indice) => {
     deleteData(url, indice).then(res => {
       res.status === 200 ? alert('Elemento eliminado con éxito!!!') : alert(`Ocurrió un error al querer eliminar el elemento!!!`);
       getData().then(res => this.setState({
-        // dbPilar: res,
         listaPaises: res.countries,
         listaCiudades: res.places,
         listaEmpresas: res.organizations,
         listaPuestos: res.jobs,
       }));
     });
-}
+  }
 
   render(){
     return (
       <div className="App">
         <NavBar/>
         <Switch>
-          <Route path="/" exact render={() => <VistaPrincipal lista={this.state.dbPilar} />} />
-          <Route path="/Puestos" exact render={() => <Puesto addItem={this.addPuesto} deleteItem={this.deleteItem} empresas={this.state.listaEmpresas} puestos={this.state.listaPuestos} />} />
-          <Route path="/Empresas" exact render={() => <Empresa addItem={this.addEmpresa} deleteItem={this.deleteItem} ciudades={this.state.listaCiudades} empresas={this.state.listaEmpresas} />} />
+          <Route path="/" exact render={() => <VistaPrincipal />} />
+          <Route path="/Puestos" exact render={() => <Puesto addItem={this.addPuesto} deleteItem={this.deleteItem} ciudades={this.state.listaCiudades} empresas={this.state.listaEmpresas} puestos={this.state.listaPuestos} />} />
+          <Route path="/Empresas" exact render={() => <Empresa addItem={this.addEmpresa} deleteItem={this.deleteItem} paises={this.state.listaPaises} ciudades={this.state.listaCiudades} empresas={this.state.listaEmpresas} />} />
           <Route path="/Ciudades" exact render={() => <Ciudad addItem={this.addCiudad} deleteItem={this.deleteItem} paises={this.state.listaPaises} ciudades={this.state.listaCiudades} />} />
           <Route path="/Paises" exact render={() => <Pais addItem={this.addPais} deleteItem={this.deleteItem} paises={this.state.listaPaises} />} />
           <Route component={NotFoundView} />

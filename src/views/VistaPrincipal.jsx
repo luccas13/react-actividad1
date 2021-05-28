@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //Import my components
 import Tabla from '../components/Tabla';
 //Import utils
-import { getData, postData, deleteData } from '../clients/pilarClient';
+import { getData } from '../clients/pilarClient';
 import { cambiarClases } from '../utils/cambiarClases';
 
 class VistaPrincipal extends Component {
@@ -26,7 +26,7 @@ class VistaPrincipal extends Component {
             <div className='contenedor' >
                 <Tabla 
                 lista={this.state.dbPilar}
-                msg={['Puesto','Empresa','Ciudad','País']}
+                msg={['Puesto', 'Descripción', 'Empresa','Ciudad','País']}
                 />
             </div>
         );

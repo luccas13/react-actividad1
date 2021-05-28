@@ -1,9 +1,4 @@
 export const buscadorId = (compId, lista) => {
-    let aux;
-    lista.map(item => {
-        if (item.id == compId){
-            aux = item;
-        }
-    });
-    return aux;
+    let aux = lista.filter(item => Number(item.id) === Number(compId));
+    return aux[0];    
 }

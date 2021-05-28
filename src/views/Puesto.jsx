@@ -13,6 +13,7 @@ class Puesto extends Component {
             indiceEmpresa: -1,
             inputPuesto: '',
             inputIndex: -1,
+            inputDescription: '',
         }
     }
 
@@ -32,12 +33,16 @@ class Puesto extends Component {
                     handleInput={this.handleInput}
                     indice={this.state.indiceEmpresa}
                     elemento={this.state.inputPuesto}
+                    description={this.state.inputDescription}
                     nameInput='inputPuesto'
                     msg='Puesto'
                     selector={true}
                     nameSelect='indiceEmpresa'
                     msgSelect='Empresa'
-                    lista={this.props.empresas}
+                    msgSelect2='placeId'
+                    lista={this.props.empresas} 
+                    lista2={this.props.ciudades}
+                    validar={true}
                     />
                     <hr className="formulario__separador" ></hr>
                     <DeleteComponent 

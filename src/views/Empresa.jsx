@@ -37,7 +37,10 @@ class Empresa extends Component {
                     selector={true}
                     nameSelect='indiceCiudad'
                     msgSelect='Ciudad'
+                    msgSelect2='countrieId'
                     lista={this.props.ciudades}
+                    lista2={this.props.paises}
+                    validar={true}
                     />
                     <hr className="formulario__separador" ></hr>
                     <DeleteComponent 
