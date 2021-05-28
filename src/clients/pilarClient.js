@@ -32,6 +32,6 @@ export const deleteData = async (url, indice) => {
         const res = await axios(configRequest);
         return(res);
     }catch(err){
-        alert('Ocurrió un error!!');
+        return(err);
     }
 }
