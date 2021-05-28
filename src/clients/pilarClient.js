@@ -16,7 +16,7 @@ export const postData = async (url, data) => {
         data: data,
     }
     try{
-        const res = axios(configRequest);
+        const res = await axios(configRequest);
         return(res);
     }catch(err){
         return(console.log('Ocurrió un error al cargar los datos!!!'));
@@ -29,7 +29,7 @@ export const deleteData = async (url, indice) => {
         url: `https://api-fake-pilar-tecno.herokuapp.com/${url}/${indice}`,
     }
     try{
-        const res = axios(configRequest);
+        const res = await axios(configRequest);
         return(res);
     }catch(err){
         alert('Ocurrió un error!!');
